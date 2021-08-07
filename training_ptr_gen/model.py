@@ -200,8 +200,9 @@ class Decoder(nn.Module):
 
         return final_dist, s_t, c_t, attn_dist, p_gen, coverage
 
-class Model(object):
+class Model(nn.Module):
     def __init__(self, model_file_path=None, is_eval=False):
+        super(Model, self).__init__()
         encoder = Encoder()
         decoder = Decoder()
         reduce_state = ReduceState()

@@ -7,8 +7,8 @@ import config
 VOCAB_SIZE = 200000
 
 word_counter = Counter()
-root = "../data/original_data/original_subset"
-data_path = os.path.join(root, "train_sub.npy")
+root = "../data/original_data/"
+data_path = os.path.join(root, "train.npy")
 vocab_path = os.path.join(root, "vocab")
 
 training_data = np.load(data_path, allow_pickle=True)

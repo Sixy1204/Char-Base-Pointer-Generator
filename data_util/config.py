@@ -4,12 +4,15 @@ import torch
 from numpy import random
 
 
-root_dir = "../data/original_data/original_subset"
-train_data_path = os.path.join(root_dir, "train_sub.npy")
-#eval_data_path = os.path.join(root_dir, "val.bin")
-decode_data_path = os.path.join(root_dir, "test_sub.npy")
+root_dir = "../data/original_data/"
+train_data_path = os.path.join(root_dir, "train.npy")
+eval_data_path = os.path.join(root_dir, "val.npy")
+decode_data_path = os.path.join(root_dir, "test.npy")
 vocab_path = os.path.join(root_dir, "vocab")
-log_root = "../logs/"
+log_root = "/home/guest/r08944052/new-data-PG-github/char_base_pg//logs/"
+
+train_data_size = 328000
+
 if not os.path.isdir(log_root):
     os.makedirs(log_root)
 
@@ -19,11 +22,11 @@ is_ner = False
 hidden_dim= 256
 emb_dim= 128
 batch_size= 32 #mini batch
-max_enc_steps= 400
+max_enc_steps= 600
 max_dec_steps= 50
 beam_size= 4
 min_dec_steps= 5
-vocab_size= 50000
+vocab_size=200000
 
 #lr = 1e-3
 lr = 0.15
