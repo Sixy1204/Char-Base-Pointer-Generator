@@ -28,7 +28,7 @@ from data_util.batcher import Batcher
 from train_util import get_input_from_batch
 from train_util import get_output_from_batch
 
-from adagrad_custom import AdagradCustom
+#from adagrad_custom import AdagradCustom
 
 use_cuda = config.use_gpu and torch.cuda.is_available()
 
@@ -284,15 +284,19 @@ class Train(object):
 
             running_avg_loss = calc_running_avg_loss(loss, running_avg_loss)
             iter_step += 1
-             #print('iter=%d  loss=%f'%(iter_step, loss))
-            
+
             self.summary_writer.add_scalar('Training loss', running_avg_loss, iter_step)
             self.summary_writer.add_scalars('Loss', {'train loss':running_avg_loss}, iter_step)
             
             if iter_step % 100 == 0:
                 self.summary_writer.flush()
                 print('iter=%d  loss=%f'%(iter_step, loss))
-           
+            
+            if config.is_coverage==True:
+                if iter_step % 1000==0:
+                    self.save_model(running_avg_loss, eval_loss, iter_step)
+                continue
+            
             ### Do validation after every epoch ###
             if iter_step % (config.train_data_size//config.batch_size) == 0:
             #if iter_step % 200 ==0:

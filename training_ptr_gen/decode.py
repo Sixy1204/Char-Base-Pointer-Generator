@@ -16,7 +16,7 @@ from model import Model
 #from config import USE_CUDA, DEVICE
 from batcher import Batcher
 from train_util import get_input_from_batch
-from utils import write_for_rouge, rouge_eval, rouge_log
+#from utils import write_for_rouge, rouge_eval, rouge_log
 
 from rouge import Rouge
 import json
@@ -125,15 +125,15 @@ class BeamSearch(object):
             ref_title = ' '.join([x for x in original_title])
             dec_title = ' '.join(decoded_words)
             
-            
+            '''    
             print('*'*40) 
             print('File: %d'%counter)
             print('art: %s'%w_ref_article)
             print('ref: %s'%ref_title)
             print('dec: %s'%dec_title)
             time.sleep(1)
-            
-            
+            '''
+
             '''
             write_for_rouge(w_ref_article, w_ref_title, w_dec_title, counter,\
                                         self._rouge_art_dir, self._rouge_ref_dir, self._rouge_dec_dir)
