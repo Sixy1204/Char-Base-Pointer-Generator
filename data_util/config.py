@@ -4,12 +4,12 @@ import torch
 from numpy import random
 
 
-root_dir = "../data/original_data/"
+root_dir = "../../char_ner_pg/data/original_data/"
 train_data_path = os.path.join(root_dir, "train.npy")
 eval_data_path = os.path.join(root_dir, "val.npy")
 decode_data_path = os.path.join(root_dir, "test.npy")
 vocab_path = os.path.join(root_dir, "vocab")
-log_root = "/home/guest/r08944052/new-data-PG-github/char_base_pg//logs/"
+log_root = "../logs/"
 
 train_data_size = 328000
 
