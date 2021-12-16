@@ -4,14 +4,14 @@ import torch
 from numpy import random
 
 
-root_dir = "../../char_ner_pg/data/original_data/"
-train_data_path = os.path.join(root_dir, "train.npy")
-eval_data_path = os.path.join(root_dir, "val.npy")
-decode_data_path = os.path.join(root_dir, "test.npy")
+root_dir = "../../char_ner_pg/data/ners/"
+train_data_path = os.path.join(root_dir, "train_person.npy")
+eval_data_path = os.path.join(root_dir, "val_person.npy")
+decode_data_path = os.path.join(root_dir, "test_person_effect.npy")
 vocab_path = os.path.join(root_dir, "vocab")
 log_root = "../logs/"
 
-train_data_size = 328000
+train_data_size = 327296
 
 if not os.path.isdir(log_root):
     os.makedirs(log_root)
@@ -40,7 +40,7 @@ trunc_norm_init_std= 1e-4
 max_grad_norm= 2.0
 
 pointer_gen = True
-is_coverage = True
+is_coverage = False
 cov_loss_wt = 1.0
 
 eps = 1e-12
@@ -49,12 +49,16 @@ eps = 1e-12
 
 # for extend coverage training
 # max iteration += 10500
-max_iterations = 360500
+max_iterations = 380000
 
 use_gpu=True
 
 lr_coverage = 0.15
 #lr_coverage = 1e-3
 
+
 SEED = 1234
 random.seed(SEED)
+torch.manual_seed(SEED)
+if use_gpu:
+    torch.cuda.manual_seed_all(SEED)

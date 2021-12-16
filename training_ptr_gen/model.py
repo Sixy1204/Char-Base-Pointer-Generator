@@ -56,7 +56,7 @@ class Encoder(nn.Module):
     def forward(self, input_x, seq_lens):
         embedded = self.embedding(input_x)
 
-        packed = pack_padded_sequence(embedded, seq_lens, batch_first=True)
+        packed = pack_padded_sequence(embedded, seq_lens, batch_first=True, enforce_sorted=False)
         output, hidden = self.lstm(packed)  # hidden is tuple([2, batch, hid_dim], [2, batch, hid_dim])
 
         encoder_outputs, _ = pad_packed_sequence(output, batch_first=True)  # [batch, max(seq_lens), 2*hid_dim]
